@@ -1,0 +1,251 @@
+/* Resetando margens e preenchimentos padrão */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+}
+
+/* Estilo para o título principal */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo da seção principal (container de tarefas) */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Rótulos dos campos do formulário */
+label {
+    margin: 5px 0;
+}
+
+/* Estilo para os campos de entrada do formulário */
+input {
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Botões no formulário */
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo do botão de cancelar edição */
+button#cancel-edit {
+    background-color: #f44336;
+}
+
+button#cancel-edit:hover {
+    background-color: #e53935;
+}
+
+/* Estilo da lista de tarefas */
+
+#task-list-section {
+    margin-bottom: 20px;
+}
+
+/* Estilo do título da seção de adicionar tarefas */
+#add-task-section h2 {
+    margin-bottom: 15px; /* Adiciona espaçamento inferior */
+}
+
+#task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Estilo para cada item da lista de tarefas */
+.task-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move; /* Cursor de arrasto */
+}
+
+/* Destacar tarefas com custo alto */
+.task-item.high-cost {
+    background-color: #FFEB3B; /* Fundo amarelo */
+}
+
+/* Estilos para os botões de reordenação */
+button.move-up-btn, button.move-down-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button.move-up-btn:hover, button.move-down-btn:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para os botões de editar e excluir em cada tarefa */
+button.edit,
+button.delete {
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Botão de editar */
+button.edit {
+    background-color: #FF9800;
+}
+
+button.edit:hover {
+    background-color: #FB8C00;
+}
+
+/* Botão de excluir */
+button.delete {
+    background-color: #F44336;
+}
+
+button.delete:hover {
+    background-color: #E53935;
+}
+
+/* Estilo do formulário de edição */
+#edit-form-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+}
+
+#edit-form-container header h2 {
+    margin-bottom: 10px;
+}
+
+/* Ajustes para o formulário de edição */
+form input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+/* Estilo para o botão de salvar alterações */
+form button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para a seção de confirmação de exclusão */
+/* Estilo para a seção de confirmação de exclusão */
+#confirm-delete {
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Certifique-se de que fique acima de outros elementos */
+}
+
+/* Centralização da box */
+#confirm-delete form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para destaque */
+    width: 400px; /* Largura fixa para uma apresentação consistente */
+    position: relative; /* Necessário para ajustes internos, se necessário */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center; /* Centraliza o texto no interior da box */
+}
+
+#confirm-delete button {
+    margin-top: 10px;
+    width: 100%; /* Botões ocupam toda a largura da box */
+    padding: 10px;
+}
+
+
+
+/* Adicionando estilo de arrastar para a lista de tarefas */
+.task-list {
+    min-height: 200px;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.task-item.dragging {
+    opacity: 0.5; /* Transparente enquanto arrasta */
+}
+
+/* Estilo para o formulário de adicionar tarefa */
+#add-task-section form {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+#add-task-section label {
+    margin: 5px 0;
+}
+
+#add-task-section button {
+    margin-top: 10px;
+}
+
+#error-message {
+    margin-top: 10px;
+    color: red;
+    display: none; /* Inicialmente oculta */
+}

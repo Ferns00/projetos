@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tarefas</title>
+    <link rel="stylesheet" href="visual.css">
+</head>
+<body>
+
+<header class="cabecalho">
+    <h1>Sistema de Cadastro de Tarefas</h1>
+</header>
+
+<main class="container">
+
+    <!-- Formulário para adicionar nova tarefa -->
+    <section id="add-task-section">
+        <h2>Adicionar Nova Tarefa</h2>
+        <form id="addTaskForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="custo">Custo:</label>
+            <input type="number" id="custo" name="custo" required>
+            
+            <label for="data_limite">Data Limite:</label>
+            <input type="date" id="data_limite" name="data_limite" required>
+            
+            <button type="submit">Adicionar Tarefa</button>
+            
+            <!-- Mensagem de erro (ficará oculta inicialmente) -->
+            <div id="error-message" style="color: red; display: none;">
+                Já existe uma tarefa com o mesmo nome!
+            </div>
+        </form>
+    </section>
+
+    <!-- Listagem das tarefas -->
+    <section id="task-list-section">
+        <header>
+            <h2>Lista de Tarefas</h2>
+        </header>
+        <div id="task-list" class="task-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <!-- As tarefas serão carregadas aqui -->
+        </div>
+    </section>
+
+    <!-- Formulário para editar tarefa -->
+    <section id="edit-form-container" style="display: none;">
+        <header>
+            <h2>Editar Tarefa</h2>
+        </header>
+        <form id="edit-form">
+            <label for="edit-nome">Nome da Tarefa</label>
+            <input type="text" id="edit-nome" name="nome" placeholder="Nome da Tarefa" required><br>
+
+            <label for="edit-custo">Custo (R$)</label>
+            <input type="number" id="edit-custo" name="custo" placeholder="Custo (R$)" required><br>
+
+            <label for="edit-data_limite">Data Limite</label>
+            <input type="date" id="edit-data_limite" name="data_limite" required><br>
+
+            <input type="hidden" id="edit-id">
+            
+            <button type="submit">Salvar Alterações</button>
+            <button type="button" id="cancel-edit">Cancelar</button>
+        </form>
+    </section>
+
+    <!-- Formulário de confirmação para exclusão -->
+    <div id="confirm-delete" style="display:none;">
+        <form id="delete-form" method="POST">
+            <p>Tem certeza que deseja excluir esta tarefa?</p>
+            <button type="submit">Sim</button>
+            <button type="button" onclick="cancelDelete()">Não</button>
+        </form>
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
