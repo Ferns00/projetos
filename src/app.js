@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -9,18 +9,18 @@ app.use(express.static('public')); // Serve arquivos estáticos da pasta 'public
 
 // Configuração do banco de dados
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',      // Altere conforme sua configuração
-    password: 'Chavez-3292@',  // Altere conforme sua configuração
-    database: 'ListaTarefas'
+  host: process.env.DB_HOST,     // Variável de ambiente para o hostname
+  user: process.env.DB_USER,     // Variável de ambiente para o usuário
+  password: process.env.DB_PASSWORD, // Variável de ambiente para a senha
+  database: process.env.DB_NAME  // Variável de ambiente para o nome do banco
 });
 
-db.connect(err => {
-    if (err) {
-        console.error('Erro ao conectar ao banco de dados:', err);
-        return;
-    }
-    console.log('Conectado ao MySQL!');
+db.connect((err) => {
+  if (err) {
+    console.error('Erro ao conectar ao banco de dados:', err.stack);
+    return;
+  }
+  console.log('Conectado ao banco de dados como id ' + db.threadId);
 });
 
 // Rota para listar tarefas
