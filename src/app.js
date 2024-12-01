@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -7,20 +7,20 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public')); // Serve arquivos estáticos da pasta 'public'
 
-// Configuração do banco de dados
+// Configuração do banco de dados usando variáveis de ambiente
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,     // Variável de ambiente para o hostname
-  user: process.env.DB_USER,     // Variável de ambiente para o usuário
-  password: process.env.DB_PASSWORD, // Variável de ambiente para a senha
-  database: process.env.DB_NAME  // Variável de ambiente para o nome do banco
+    host: process.env.DB_HOST,      // Usando variável de ambiente para o hostname
+    user: process.env.DB_USER,      // Usando variável de ambiente para o usuário
+    password: process.env.DB_PASSWORD,  // Usando variável de ambiente para a senha
+    database: process.env.DB_NAME   // Usando variável de ambiente para o nome do banco
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error('Erro ao conectar ao banco de dados:', err.stack);
-    return;
-  }
-  console.log('Conectado ao banco de dados como id ' + db.threadId);
+db.connect(err => {
+    if (err) {
+        console.error('Erro ao conectar ao banco de dados:', err);
+        return;
+    }
+    console.log('Conectado ao MySQL!');
 });
 
 // Rota para listar tarefas
@@ -229,7 +229,7 @@ app.delete('/tarefas/:id', (req, res) => {
 });
 
 // Iniciando o servidor
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
